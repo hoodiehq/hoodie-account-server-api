@@ -6,7 +6,7 @@ var test = require('tap').test
 var getApi = require('../../')
 
 test('walkthrough', function (t) {
-  t.plan(10)
+  t.plan(12)
 
   var api = getApi({
     PouchDB: PouchDB,
@@ -34,9 +34,21 @@ test('walkthrough', function (t) {
   })
 
   .then(function (account) {
-    t.pass('creates account')
+    t.is(account.username, 'foo', 'creates account')
 
-    return api.accounts.remove(account.id)
+    return api.sessions.add({username: account.username})
+  })
+
+  .then(function (session) {
+    t.ok(session.id, 'creates session')
+
+    return api.sessions.remove(session.id, {include: 'account.profile'})
+  })
+
+  .then(function (session) {
+    t.ok(session.account.id, 'removes session')
+
+    return api.accounts.remove(session.account.id)
   })
 
   .then(function (account) {
