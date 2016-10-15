@@ -15,7 +15,6 @@ using a PouchDB instance for persistence.
 ```js
 var AccountApi = require('@hoodie/account-server-api')
 var PouchDB = require('pouchdb')
-  .plugin(require('pouchdb-users'))
 
 var api = new AccountApi({
   PouchDB: PouchDB,
@@ -106,11 +105,9 @@ Examples
 
 ```js
 var PouchDB = require('pouchdb')
-PouchDB.plugin(require('pouchdb-users'))
-var db = new PouchDB('http://localhost:5984/_users')
 db.useAsAuthenticationDB().then(function () {
   var api = new AccountApi({
-    db: db,
+    PouchDB: PouchDB,
     secret: 'secret123',
     admins: {
       kim: '-pbkdf2-e079757b4cb58ae17467c8befe725778ce97e422,0aef36ccafa33f3e81ae897baf23f85c,10'
