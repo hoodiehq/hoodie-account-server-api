@@ -6,7 +6,8 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "pretest": "standard",
     "test": "nyc tap 'test/{unit,integration}/**/*-test.js'",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "postpublish": "greenkeeper-postpublish"
   },
   "nyc": {
     "//": "since we override the default excludes, we have to also (re)exclude the tests directory and node_modules",
@@ -35,6 +36,7 @@
   "devDependencies": {
     "base64url": "^2.0.0",
     "coveralls": "^2.11.14",
+    "greenkeeper-postpublish": "^1.0.1",
     "nyc": "^8.3.1",
     "pouchdb-users": "^1.0.3",
     "semantic-release": "^6.3.1",
