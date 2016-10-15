@@ -36,7 +36,6 @@
     "base64url": "^2.0.0",
     "coveralls": "^2.11.14",
     "nyc": "^8.3.1",
-    "pouchdb-users": "^1.0.3",
     "semantic-release": "^6.3.1",
     "standard": "^8.4.0",
     "tap": "^7.1.2"
@@ -51,6 +50,7 @@
     "pouchdb-core": "^6.0.6",
     "pouchdb-errors": "6.0.6",
     "pouchdb-mapreduce": "^6.0.6",
+    "pouchdb-users": "^1.0.3",
     "uuid": "^2.0.3"
   }
 }
