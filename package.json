@@ -1,0 +1,56 @@
+{
+  "name": "@hoodie/account-server-api",
+  "description": "Account JavaScript API backed by PouchDB",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "pretest": "standard",
+    "test": "nyc tap 'test/{unit,integration}/**/*-test.js'",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "nyc": {
+    "//": "since we override the default excludes, we have to also (re)exclude the tests directory and node_modules",
+    "exclude": [
+      "node_modules",
+      "test",
+      "lib/db/users-design-doc.js"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hoodiehq/hoodie-account-server-api.git"
+  },
+  "keywords": [
+    "hoodie",
+    "couchdb",
+    "account",
+    "api"
+  ],
+  "author": "The Hoodie Community and other contributors | http://hood.ie/",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/hoodiehq/hoodie-account-server-api/issues"
+  },
+  "homepage": "https://github.com/hoodiehq/hoodie-account-server-api#readme",
+  "devDependencies": {
+    "base64url": "^2.0.0",
+    "coveralls": "^2.11.14",
+    "nyc": "^8.3.1",
+    "pouchdb-users": "^1.0.3",
+    "semantic-release": "^6.3.1",
+    "standard": "^8.4.0",
+    "tap": "^7.1.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "couchdb-calculate-session-id": "^1.1.1",
+    "lodash": "^4.16.4",
+    "pouchdb-adapter-memory": "^6.0.6",
+    "pouchdb-core": "^6.0.6",
+    "pouchdb-errors": "6.0.6",
+    "pouchdb-mapreduce": "^6.0.6",
+    "uuid": "^2.0.3"
+  }
+}
