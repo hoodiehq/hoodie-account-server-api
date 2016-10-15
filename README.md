@@ -15,19 +15,12 @@ using a PouchDB instance for persistence.
 ```js
 var AccountApi = require('@hoodie/account-server-api')
 var PouchDB = require('pouchdb')
+  .plugin(require('pouchdb-users'))
 
-PouchDB.plugin(require('pouchdb-users'))
-
-var db = new PouchDB('http://localhost:5984/_users')
-
-db.installUsersBehavior().then(function () {
-  var api = new AccountApi({
-    db: db,
-    secret: 'secret123'
-  })
-
-  api.accounts.findAll().then(logAccountStats)
-  api.accounts.on('change', logAccountChange)
+var api = new AccountApi({
+  PouchDB: PouchDB,
+  usersDb: 'my-users-db',
+  secret: 'secret123'
 })
 ```
 
@@ -82,12 +75,10 @@ new AccountApi(options)
     </tr>
   </thead>
   <tr>
-    <th align="left"><code>options.db</code></th>
+    <th align="left"><code>options.PouchDB</code></th>
     <td>Object</td>
     <td>
-      PouchDB instance with
-      <a href="https://github.com/hoodiehq/pouchdb-users">pouchdb-users</a>
-      plugin
+      <a href="https://pouchdb.com/">PouchDB</a> constructor
     </td>
     <td>Yes</td>
   </tr>
@@ -98,6 +89,14 @@ new AccountApi(options)
       Server secret, like CouchDB’s <code>couch_httpd_auth.secret</code>
     </td>
     <td>Yes</td>
+  </tr>
+  <tr>
+    <th align="left"><code>options.usersDb</code></th>
+    <td>String</td>
+    <td>
+      Defaults to <code>_users</code>
+    </td>
+    <td>No</td>
   </tr>
 </table>
 
