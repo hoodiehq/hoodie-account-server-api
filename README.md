@@ -1506,6 +1506,29 @@ admin.requests.on('remove', handler)
 Have a look at the Hoodie project's [contribution guidelines](https://github.com/hoodiehq/hoodie/blob/master/CONTRIBUTING.md).
 If you want to hang out you can join our [Hoodie Community Chat](http://hood.ie/chat/).
 
+## Testing
+
+Local setup
+
+```
+git clone https://github.com/hoodiehq/hoodie-account-server-api.git
+cd hoodie-account-server-api
+npm install
+```
+
+Run all tests and code style checks
+
+```
+npm test
+```
+
+If you want to run a single test you can do it with
+
+```
+./node_modules/.bin/tap test/unit/sessions/remove-test.js 
+```
+
+
 ## License
 
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
