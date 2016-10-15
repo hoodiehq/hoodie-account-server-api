@@ -18,9 +18,10 @@ var accountsOn = require('./lib/accounts/on')
 var startListeningToAccountChanges = require('./lib/utils/start-listening-to-account-changes')
 
 function accountApi (options) {
+  options.PouchDB.plugin(require('pouchdb-users'))
   var accountsEmitter = new EventEmitter()
   var state = {
-    db: options.db,
+    db: new options.PouchDB(options.usersDb || '_users'),
     secret: options.secret,
     accountsEmitter: accountsEmitter
   }
