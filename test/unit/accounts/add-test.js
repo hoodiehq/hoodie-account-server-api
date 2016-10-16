@@ -3,7 +3,7 @@ var test = require('tap').test
 var addAccount = require('../../../lib/accounts/add')
 
 test('addAccount', function (group) {
-  group.test('with empty username', {skip: true}, function (t) {
+  group.test('with empty username', function (t) {
     t.plan(3)
 
     var state = {
