@@ -9,11 +9,11 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "nyc": {
-    "//": "since we override the default excludes, we have to also (re)exclude the tests directory and node_modules",
+    "//": "since we override the default excludes, we have to also (re)exclude the test directory and node_modules",
     "exclude": [
       "node_modules",
       "test",
-      "lib/db/users-design-doc.js"
+      "lib/db"
     ]
   },
   "repository": {
