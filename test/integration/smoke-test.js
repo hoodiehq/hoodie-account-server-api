@@ -42,7 +42,11 @@ test('walkthrough', function (t) {
   .then(function (account) {
     t.is(account.username, 'foo', 'creates account')
 
-    return api.sessions.add({username: account.username})
+    return api.sessions.add({
+      account: {
+        username: account.username
+      }
+    })
   })
 
   .then(function (session) {
