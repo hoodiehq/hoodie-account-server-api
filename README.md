@@ -136,7 +136,7 @@ admin.sessions.add(options)
   <tr>
     <th align="left"><code>options.account.username</code></th>
     <td>String</td>
-    <td>-</td>
+    <td>Token gets invalidated after first usage</td>
     <td>Yes (unless <code>options.account.token</code> set)</td>
   </tr>
   <tr>
@@ -911,7 +911,7 @@ admin.accounts.update(accountProperties, options)
   <tr>
     <th align="left"><code>idOrObject.token</code></th>
     <td>String</td>
-    <td>Lookup account by one-time token</td>
+    <td>Lookup account by one-time token. Token gets invalidated after first usage</td>
     <td>No</td>
   </tr>
   <tr>
