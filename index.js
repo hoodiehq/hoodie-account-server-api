@@ -3,6 +3,7 @@ module.exports = accountApi
 var EventEmitter = require('events').EventEmitter
 
 var setup = require('./lib/setup')
+var account = require('./lib/account')
 
 var addSession = require('./lib/sessions/add')
 var findSession = require('./lib/sessions/find')
@@ -14,6 +15,8 @@ var findAllAccounts = require('./lib/accounts/find-all')
 var updateAccount = require('./lib/accounts/update')
 var removeAccount = require('./lib/accounts/remove')
 var accountsOn = require('./lib/accounts/on')
+
+var promiseThen = require('./lib/utils/promise-then')
 
 var startListeningToAccountChanges = require('./lib/utils/start-listening-to-account-changes')
 
@@ -44,13 +47,7 @@ function accountApi (options) {
       remove: promiseThen.bind(null, setupPromise, removeAccount.bind(null, state)),
       update: promiseThen.bind(null, setupPromise, updateAccount.bind(null, state)),
       on: accountsOn.bind(null, state)
-    }
+    },
+    account: account.bind(null, setupPromise, state)
   }
-}
-
-function promiseThen (promise, method) {
-  var args = Array.prototype.slice.call(arguments, 2)
-  return promise.then(function () {
-    return method.apply(null, args)
-  })
 }
