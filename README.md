@@ -105,14 +105,12 @@ Examples
 
 ```js
 var PouchDB = require('pouchdb')
-db.useAsAuthenticationDB().then(function () {
-  var api = new AccountApi({
-    PouchDB: PouchDB,
-    secret: 'secret123',
-    admins: {
-      kim: '-pbkdf2-e079757b4cb58ae17467c8befe725778ce97e422,0aef36ccafa33f3e81ae897baf23f85c,10'
-    }
-  })
+var api = new AccountApi({
+  PouchDB: PouchDB,
+  secret: 'secret123',
+  admins: {
+    kim: '-pbkdf2-e079757b4cb58ae17467c8befe725778ce97e422,0aef36ccafa33f3e81ae897baf23f85c,10'
+  }
 })
 ```
 
