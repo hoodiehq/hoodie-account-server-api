@@ -93,7 +93,7 @@ new AccountApi(options)
     <th align="left"><code>options.usersDb</code></th>
     <td>String</td>
     <td>
-      Defaults to <code>_users</code>
+      Defaults to <code>\_users</code>
     </td>
     <td>No</td>
   </tr>
@@ -134,17 +134,28 @@ admin.sessions.add(options)
     </tr>
   </thead>
   <tr>
-    <th align="left"><code>options.username</code></th>
+    <th align="left"><code>options.account.username</code></th>
     <td>String</td>
     <td>-</td>
-    <td>Yes</td>
+    <td>Yes (unless <code>options.account.token</code> set)</td>
   </tr>
   <tr>
-    <th align="left"><code>options.auth</code></th>
-    <td>Object</td>
-    <td>Object with property <code>password</code>, a String that will be validated in the user document. If not included, admin access is assumed (no authentication)</td>
+    <th align="left"><code>options.account.token</code></th>
+    <td>String</td>
+    <td>-</td>
+    <td>Yes (unless <code>options.account.username</code> set)</td>
+  </tr>
+  <tr>
+    <th align="left"><code>options.account.password</code></th>
+    <td>String</td>
+    <td>
+      Only applicable if <code>options.account.username</code> is set.
+      If only username is passed then it’s assumed that an admin wants to
+      create a session without any validation of user credentials.
+    </td>
     <td>No</td>
   </tr>
+
 </table>
 
 Resolves with `sessionProperties`
@@ -185,11 +196,37 @@ Rejects with:
   </tr>
 </table>
 
-Example
+Examples
 
 ```js
+// create session if pat’s password is "secret"
 admin.sessions.add({
-  username: 'pat'
+  account: {
+    username: 'pat',
+    password: 'secret'
+  }
+}).then(function (sessionProperties) {
+  var sessionId = sessionProperties.id
+  var username = sessionProperties.account.username
+}).catch(function (error) {
+  console.error(error)
+})
+// create session for pat
+admin.sessions.add({
+  account: {
+    username: 'pat'
+  }
+}).then(function (sessionProperties) {
+  var sessionId = sessionProperties.id
+  var username = sessionProperties.account.username
+}).catch(function (error) {
+  console.error(error)
+})
+// create session using a one-time auth token
+admin.sessions.add({
+  account: {
+    token: 'secrettoken123'
+  }
 }).then(function (sessionProperties) {
   var sessionId = sessionProperties.id
   var username = sessionProperties.account.username
@@ -1115,7 +1152,7 @@ admin.accounts.remove({ username: 'pat', reason: 'foo bar' })
 ```js
 admin.requests.add({
   type: 'passwordreset',
-  contact: 'pat@example.com'
+  email: 'pat@example.com'
 })
 ```
 
@@ -1125,7 +1162,7 @@ Resolves with
 {
   id: 'request123',
   type: 'passwordreset',
-  contact: 'pat@example.com'
+  email: 'pat@example.com'
 }
 ```
 
@@ -1177,13 +1214,7 @@ admin.requests.find({id: 'token123'})
 
 ### api.account()
 
----
-
-🐕 **TO BE DONE**: _create issue and link it here_
-
----
-
-The `admin.account` method returns a scoped API for one account
+The `admin.account` method returns a scoped API for one account, see below
 
 ```js
 var account = admin.account(idOrObject)
@@ -1195,7 +1226,7 @@ Examples
 admin.account('account123')
 admin.account({id: 'account123'})
 admin.account({username: 'pat@example.com'})
-admin.account({token: 'pat@example.com'})
+admin.account({token: 'token456'})
 ```
 
 ### api.account().profile.find()
@@ -1252,14 +1283,8 @@ resolves with `profileProperties`
 
 ### api.account().tokens.add()
 
----
-
-🐕 **TO BE DONE**: _create issue and link it here_
-
----
-
 ```js
-admin.account(idOrObject).tokens.add(properties)
+admin.account('account123').tokens.add(properties)
 ```
 
 resolves with `tokenProperties`
@@ -1274,12 +1299,56 @@ resolves with `tokenProperties`
 }
 ```
 
+<table>
+  <thead>
+    <tr>
+      <th>Argument</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tr>
+    <th align="left">
+      <code>properties.type</code>
+      🐕 **TO BE DONE**: <a href="https://github.com/hoodiehq/hoodie-account-server-api/issues/17">17</a>
+    </th>
+    <td>String</td>
+    <td>Every token needs a type, for example <code>"passwordreset"</code></td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <th align="left">
+      <code>properties.timeout</code>
+      🐕 **TO BE DONE**: <a href="https://github.com/hoodiehq/hoodie-account-server-api/issues/18">18</a>
+    </th>
+    <td>Number</td>
+    <td>Time from now until expiration of token in seconds. Defaults to <code>7200</code> (2 hours)</td>
+    <td>No</td>
+  </tr>
+</table>
+
+rejects with
+
+```js
+<table>
+  <tr>
+    <th align="left"><code>NotFoundError</code></th>
+    <td>Account not found</td>
+  </tr>
+  <tr>
+    <th align="left"><code>ConnectionError</code></th>
+    <td>Could not connect to server</td>
+  </tr>
+</table>
+```
+
 Example
 
 ```js
-admin.account('token123').account.tokens.add({
+admin.account({username: 'pat@example.com'}).account.tokens.add({
   type: 'passwordreset',
-  contact: 'pat@example.com'
+  email: 'pat@example.com'
 })
 ```
 
@@ -1525,7 +1594,7 @@ npm test
 If you want to run a single test you can do it with
 
 ```
-./node_modules/.bin/tap test/unit/sessions/remove-test.js 
+./node_modules/.bin/tap test/unit/sessions/remove-test.js
 ```
 
 
