@@ -23,7 +23,7 @@ test('removeSession', function (group) {
   })
 
   // prepared for https://github.com/hoodiehq/camp/issues/58
-  group.test('session found', {skip: true}, function (t) {
+  group.test('session found', {skip: false}, function (t) {
     t.plan(2)
 
     simple.mock(internals, 'findSession').resolveWith({
