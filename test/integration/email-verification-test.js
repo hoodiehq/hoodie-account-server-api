@@ -31,6 +31,8 @@ test('email verification', function (t) {
   })
 
   .then(function (token) {
+    t.ok(token.id, 'sets token.id')
+
     return api.accounts.update({
       token: token.id
     }, {
