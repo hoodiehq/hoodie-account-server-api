@@ -1285,18 +1285,6 @@ resolves with `profileProperties`
 admin.account('account123').tokens.add(properties)
 ```
 
-resolves with `tokenProperties`
-
-```json
-{
-  "id": "token123",
-  "type": "passwordreset",
-  "accountId": "account123",
-  "contact": "pat@example.com",
-  "createdAt": "2016-01-01T00:00.000Z"
-}
-```
-
 <table>
   <thead>
     <tr>
@@ -1326,9 +1314,20 @@ resolves with `tokenProperties`
   </tr>
 </table>
 
-rejects with
+resolves with `tokenProperties`
 
-```js
+```json
+{
+  "id": "token123",
+  "type": "passwordreset",
+  "accountId": "account123",
+  "contact": "pat@example.com",
+  "createdAt": "2016-01-01T00:00.000Z"
+}
+```
+
+Rejects with:
+
 <table>
   <tr>
     <th align="left"><code>NotFoundError</code></th>
@@ -1339,7 +1338,6 @@ rejects with
     <td>Could not connect to server</td>
   </tr>
 </table>
-```
 
 Example
 
@@ -1352,15 +1350,29 @@ admin.account({username: 'pat@example.com'}).account.tokens.add({
 
 ### api.account().tokens.find()
 
----
-
-🐕 **TO BE DONE**: _create issue and link it here_
-
----
 
 ```js
-admin.account(idOrObject).tokens.find(idOrObject)
+admin.account(idOrObject).tokens.find(id)
 ```
+
+<table>
+  <thead>
+    <tr>
+      <th>Argument</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tr>
+    <th align="left">
+      <code>id</code>
+    </th>
+    <td>String</td>
+    <td>token id</td>
+    <td>Yes</td>
+  </tr>
+</table>
 
 resolves with `tokenProperties`
 
@@ -1373,6 +1385,19 @@ resolves with `tokenProperties`
   "createdAt": "2016-01-01T00:00.000Z"
 }
 ```
+
+Rejects with:
+
+<table>
+  <tr>
+    <th align="left"><code>NotFoundError</code></th>
+    <td>Account not found</td>
+  </tr>
+  <tr>
+    <th align="left"><code>ConnectionError</code></th>
+    <td>Could not connect to server</td>
+  </tr>
+</table>
 
 Example
 
