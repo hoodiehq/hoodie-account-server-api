@@ -615,8 +615,8 @@ Resolves with `accountProperties`:
 {
   "id": "account123",
   "username": "pat",
-  "createdAt": "2016-01-01T00:00.000Z",
-  "updatedAt": "2016-01-01T00:00.000Z",
+  "createdAt": "2016-01-01T00:00:00.000Z",
+  "updatedAt": "2016-01-01T00:00:00.000Z",
   "profile": {
     "fullname": "Dr. Pat Hook"
   }
@@ -722,8 +722,8 @@ Resolves with `accountProperties`:
 {
   "id": "account123",
   "username": "pat",
-  "createdAt": "2016-01-01T00:00.000Z",
-  "updatedAt": "2016-01-01T00:00.000Z",
+  "createdAt": "2016-01-01T00:00:00.000Z",
+  "updatedAt": "2016-01-01T00:00:00.000Z",
   // if options.include === 'profile'
   "profile": {
     "fullname": "Dr. Pat Hook"
@@ -824,8 +824,8 @@ Resolves with Array of `accountProperties`
 [{
   "id": "account123",
   "username": "pat",
-  "createdAt": "2016-01-01T00:00.000Z",
-  "updatedAt": "2016-01-01T00:00.000Z",
+  "createdAt": "2016-01-01T00:00:00.000Z",
+  "updatedAt": "2016-01-01T00:00:00.000Z",
   // if options.include === 'profile'
   "profile": {
     "fullname": "Dr. Pat Hook"
@@ -833,8 +833,8 @@ Resolves with Array of `accountProperties`
 }, {
   "id": "account456",
   "username": "sam",
-  "createdAt": "2016-01-01T00:00.000Z",
-  "updatedAt": "2016-01-01T00:00.000Z",
+  "createdAt": "2016-01-01T00:00:00.000Z",
+  "updatedAt": "2016-01-01T00:00:00.000Z",
   // if options.include === 'profile'
   "profile": {
     "fullname": "Lady Samident"
@@ -950,8 +950,8 @@ Resolves with `accountProperties`:
 {
   "id": "account123",
   "username": "pat",
-  "createdAt": "2016-01-01T00:00.000Z",
-  "updatedAt": "2016-01-01T00:00.000Z",
+  "createdAt": "2016-01-01T00:00:00.000Z",
+  "updatedAt": "2016-01-01T00:00:00.000Z",
   // if options.include === 'profile'
   "profile": {
     "fullname": "Dr. Pat Hook"
@@ -1088,9 +1088,9 @@ Resolves with `accountProperties`:
 {
   "id": "account123",
   "username": "pat",
-  "createdAt": "2016-01-01T00:00.000Z",
-  "updatedAt": "2016-02-01T00:00.000Z",
-  "deletedAt": "2016-03-01T00:00.000Z",
+  "createdAt": "2016-01-01T00:00:00.000Z",
+  "updatedAt": "2016-02-01T00:00:00.000Z",
+  "deletedAt": "2016-03-01T00:00:00.000Z",
   // if options.include === 'profile'
   "profile": {
     "fullname": "Dr. Pat Hook"
@@ -1322,7 +1322,7 @@ resolves with `tokenProperties`
   "type": "passwordreset",
   "accountId": "account123",
   "contact": "pat@example.com",
-  "createdAt": "2016-01-01T00:00.000Z"
+  "createdAt": "2016-01-01T00:00:00.000Z"
 }
 ```
 
@@ -1382,7 +1382,7 @@ resolves with `tokenProperties`
   "type": "passwordreset",
   "accountId": "account123",
   "contact": "pat@example.com",
-  "createdAt": "2016-01-01T00:00.000Z"
+  "createdAt": "2016-01-01T00:00:00.000Z"
 }
 ```
 
@@ -1426,12 +1426,12 @@ resolves with array of `tokenProperties`
   "type": "passwordreset",
   "accountId": "account123",
   "contact": "pat@example.com",
-  "createdAt": "2016-01-01T00:00.000Z"
+  "createdAt": "2016-01-01T00:00:00.000Z"
 }, {
   "id": "token456",
   "type": "session",
   "accountId": "account123",
-  "createdAt": "2016-01-02T00:00.000Z"
+  "createdAt": "2016-01-02T00:00:00.000Z"
 }]
 ```
 
@@ -1466,7 +1466,7 @@ resolves with `tokenProperties`
   "type": "passwordreset",
   "accountId": "account123",
   "contact": "pat@example.com",
-  "createdAt": "2016-01-01T00:00.000Z"
+  "createdAt": "2016-01-01T00:00:00.000Z"
 }
 ```
 
