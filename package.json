@@ -52,6 +52,6 @@
     "pouchdb-errors": "6.0.7",
     "pouchdb-mapreduce": "^6.0.7",
     "pouchdb-users": "^1.0.3",
-    "uuid": "^2.0.3"
+    "uuid": "^3.0.0"
   }
 }
