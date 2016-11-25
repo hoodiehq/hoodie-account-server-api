@@ -40,5 +40,41 @@ test('add', function (group) {
     })
   })
 
+  group.test('with timeout set', function (t) {
+    t.plan(1)
+
+    var timeout = 5
+    var token = {
+      id: 'testtoken',
+      type: 'testtype',
+      timeout: timeout
+    }
+
+    account(Promise.reject('mock')).tokens.add(token)
+
+    .catch(function () {
+      t.is(token.timeout, timeout)
+    })
+  })
+
+  group.test('without timeout', function (t) {
+    t.plan(1)
+
+    var compareToken = {
+      id: 'testtoken',
+      type: 'testtype',
+      timeout: 7200
+    }
+    var tokenWithoutTimeout = {
+      id: 'testtoken',
+      type: 'testtype'
+    }
+    account(Promise.reject('mock')).tokens.add(tokenWithoutTimeout)
+
+    .catch(function () {
+      t.deepEqual(tokenWithoutTimeout, compareToken)
+    })
+  })
+
   group.end()
 })
