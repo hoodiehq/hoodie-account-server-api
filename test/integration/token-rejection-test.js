@@ -23,8 +23,7 @@ test('token rejection', function (t) {
     return api.account({id: 'user123'}).tokens.add({
       id: 'secrettoken',
       type: 'passwordreset',
-      timeout: 0,
-      createdAt: '2016-11-26T00:00:00.000Z'
+      timeout: 0
     })
   })
 
