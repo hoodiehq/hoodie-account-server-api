@@ -28,7 +28,7 @@ test('token rejection', function (t) {
   })
 
   .then(function (token) {
-    t.is(token.timeout, 0, 'token created with timeout 0s')
+    t.is(token.createdAt, token.expiresAt, 'token created with createdAt and expiresAt same')
 
     return api.sessions.add({
       account: {
