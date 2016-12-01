@@ -1297,7 +1297,6 @@ admin.account('account123').tokens.add(properties)
   <tr>
     <th align="left">
       <code>properties.type</code>
-      🐕 **TO BE DONE**: <a href="https://github.com/hoodiehq/hoodie-account-server-api/issues/17">17</a>
     </th>
     <td>String</td>
     <td>Every token needs a type, for example <code>"passwordreset"</code></td>
@@ -1306,7 +1305,6 @@ admin.account('account123').tokens.add(properties)
   <tr>
     <th align="left">
       <code>properties.timeout</code>
-      🐕 **TO BE DONE**: <a href="https://github.com/hoodiehq/hoodie-account-server-api/issues/18">18</a>
     </th>
     <td>Number</td>
     <td>Time from now until expiration of token in seconds. Defaults to <code>7200</code> (2 hours)</td>
