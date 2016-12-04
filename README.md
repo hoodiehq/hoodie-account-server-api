@@ -7,8 +7,8 @@
 [![Dependency Status](https://david-dm.org/hoodiehq/hoodie-account-server-api.svg)](https://david-dm.org/hoodiehq/hoodie-account-server-api)
 [![devDependency Status](https://david-dm.org/hoodiehq/hoodie-account-server-api/dev-status.svg)](https://david-dm.org/hoodiehq/hoodie-account-server-api#info=devDependencies)
 
-`@hoodie/account-server-api` is a JavaScript API for all things account
-using a PouchDB instance for persistence.
+`@hoodie/account-server-api` is a JavaScript API to manage user accounts and
+authentication backed by PouchDB. Features include account profiles and tokens.
 
 ## Example
 
@@ -153,7 +153,6 @@ admin.sessions.add(options)
     </td>
     <td>No</td>
   </tr>
-
 </table>
 
 Resolves with `sessionProperties`
