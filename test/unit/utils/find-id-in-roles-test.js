@@ -1,6 +1,6 @@
 var test = require('tap').test
 
-var findIdInRoles = require('../../lib/utils/find-id-in-roles')
+var findIdInRoles = require('../../../lib/utils/find-id-in-roles')
 
 test('[]', function (t) {
   var id = findIdInRoles([])
