@@ -48,7 +48,7 @@
     "couchdb-calculate-session-id": "^1.1.1",
     "lodash": "^4.16.4",
     "pouchdb-adapter-memory": "^6.0.7",
-    "pouchdb-core": "^6.0.7",
+    "pouchdb-core": "^6.1.2",
     "pouchdb-errors": "6.1.1",
     "pouchdb-mapreduce": "^6.0.7",
     "pouchdb-users": "^1.0.3",
