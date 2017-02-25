@@ -155,7 +155,7 @@ admin.sessions.add(options)
     <th align="left"><code>options.timeout</code></th>
     <td>Number</td>
     <td>
-      Time from now until expiration of session in seconds. Defaults to <code>1209600</code> (14 days).
+      Time from now until expiration of session in seconds. Defaults to no timeout.
     </td>
     <td>No</td>
   </tr>
