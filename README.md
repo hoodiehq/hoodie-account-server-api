@@ -151,6 +151,14 @@ admin.sessions.add(options)
     </td>
     <td>No</td>
   </tr>
+  <tr>
+    <th align="left"><code>options.timeout</code></th>
+    <td>Number</td>
+    <td>
+      Time from now until expiration of session in seconds. Defaults to no timeout.
+    </td>
+    <td>No</td>
+  </tr>
 </table>
 
 Resolves with `sessionProperties`
