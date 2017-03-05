@@ -1309,6 +1309,14 @@ admin.account('account123').tokens.add(properties)
   </tr>
   <tr>
     <th align="left">
+      <code>properties.id</code>
+    </th>
+    <td>String</td>
+    <td>Optional token id. If none is passed, a <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a> will be generated</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th align="left">
       <code>properties.timeout</code>
     </th>
     <td>Number</td>
