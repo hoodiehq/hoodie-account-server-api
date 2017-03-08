@@ -17,16 +17,19 @@ var removeAccount = require('./lib/accounts/remove')
 var accountsOn = require('./lib/accounts/on')
 
 var promiseThen = require('./lib/utils/promise-then')
+var cache = require('./lib/utils/cache')
 
 var startListeningToAccountChanges = require('./lib/utils/start-listening-to-account-changes')
 
 function accountApi (options) {
   options.PouchDB.plugin(require('pouchdb-users'))
   var accountsEmitter = new EventEmitter()
+  var db = new options.PouchDB(options.usersDb || '_users')
   var state = {
-    db: new options.PouchDB(options.usersDb || '_users'),
+    db: db,
     secret: options.secret,
-    accountsEmitter: accountsEmitter
+    accountsEmitter: accountsEmitter,
+    cache: cache(db)
   }
 
   // returns promise
