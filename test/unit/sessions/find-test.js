@@ -6,7 +6,7 @@ var findSession = require('../../../lib/sessions/find')
 test('findSession', function (group) {
   group.test('user not found', function (t) {
     findSession({
-      db: {
+      cache: {
         get: simple.stub().rejectWith(new Error('oops'))
       }
     }, 'sessionid')
@@ -24,7 +24,7 @@ test('findSession', function (group) {
   group.test('user found but session invalid', function (t) {
     findSession({
       secret: 'secret',
-      db: {
+      cache: {
         get: simple.stub().resolveWith({
           salt: 'salt123'
         })
@@ -45,7 +45,7 @@ test('findSession', function (group) {
     simple.mock(findSession.internals, 'isValidSessionId').returnWith(true)
     findSession({
       secret: 'secret',
-      db: {
+      cache: {
         get: simple.stub().resolveWith({
           roles: ['id:user123'],
           salt: 'salt123'
