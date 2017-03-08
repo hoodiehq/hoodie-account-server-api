@@ -8,9 +8,9 @@ test('addAccount', function (group) {
     t.plan(3)
 
     var state = {
-      db: {
-        put: function () {
-          throw new Error('should not call db.put')
+      cache: {
+        set: function () {
+          throw new Error('should not call cache.set')
         }
       }
     }
@@ -33,8 +33,8 @@ test('addAccount', function (group) {
     t.plan(1)
 
     var state = {
-      db: {
-        put: simple.stub().resolveWith({})
+      cache: {
+        set: simple.stub().resolveWith({})
       }
     }
     addAccount(state, {
@@ -45,7 +45,7 @@ test('addAccount', function (group) {
     })
 
     .then(function () {
-      var doc = state.db.put.lastCall.arg
+      var doc = state.cache.set.lastCall.arg
       t.deepEqual(doc.profile, {name: 'bar'})
     })
 

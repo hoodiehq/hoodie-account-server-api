@@ -8,7 +8,7 @@ test('updateAccount', function (group) {
     t.plan(1)
 
     var state = {
-      db: {
+      cache: {
         get: simple.stub().resolveWith({
           _id: 'org.couchdb.user:foo',
           _rev: '1-234',
@@ -18,7 +18,7 @@ test('updateAccount', function (group) {
             name: 'bar'
           }
         }),
-        put: simple.stub().resolveWith({})
+        set: simple.stub().resolveWith({})
       }
     }
     updateAccount(state, {
@@ -29,7 +29,7 @@ test('updateAccount', function (group) {
     })
 
     .then(function () {
-      var doc = state.db.put.lastCall.arg
+      var doc = state.cache.set.lastCall.arg
       t.deepEqual(doc.profile, {})
     })
 
@@ -40,7 +40,7 @@ test('updateAccount', function (group) {
     t.plan(4)
 
     var state = {
-      db: {
+      cache: {
         get: simple.stub().resolveWith({
           _id: 'org.couchdb.user:foo',
           _rev: '1-234',
@@ -50,7 +50,7 @@ test('updateAccount', function (group) {
             name: 'bar'
           }
         }),
-        put: simple.stub().resolveWith({})
+        set: simple.stub().resolveWith({})
       }
     }
     updateAccount(state, {
@@ -63,9 +63,9 @@ test('updateAccount', function (group) {
     })
 
     .then(function () {
-      t.is(state.db.put.callCount, 2)
-      var newDoc = state.db.put.calls[0].arg
-      var removedDoc = state.db.put.calls[1].arg
+      t.is(state.cache.set.callCount, 2)
+      var newDoc = state.cache.set.calls[0].arg
+      var removedDoc = state.cache.set.calls[1].arg
       t.deepEqual(newDoc.profile, {})
       t.is(newDoc.name, 'newfoo')
       t.is(removedDoc._deleted, true)
