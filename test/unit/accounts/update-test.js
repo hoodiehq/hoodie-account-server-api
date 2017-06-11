@@ -8,6 +8,7 @@ test('updateAccount', function (group) {
     t.plan(1)
 
     var state = {
+      setupPromise: Promise.resolve(),
       cache: {
         get: simple.stub().resolveWith({
           _id: 'org.couchdb.user:foo',
@@ -40,6 +41,7 @@ test('updateAccount', function (group) {
     t.plan(4)
 
     var state = {
+      setupPromise: Promise.resolve(),
       cache: {
         get: simple.stub().resolveWith({
           _id: 'org.couchdb.user:foo',

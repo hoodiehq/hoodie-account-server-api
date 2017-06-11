@@ -35,8 +35,10 @@ test('addAccount', function (group) {
     var state = {
       cache: {
         set: simple.stub().resolveWith({})
-      }
+      },
+      setupPromise: Promise.resolve()
     }
+
     addAccount(state, {
       username: 'foo',
       profile: {
