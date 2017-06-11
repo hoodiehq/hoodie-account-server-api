@@ -2,7 +2,6 @@ module.exports = accountApi
 
 var EventEmitter = require('events').EventEmitter
 
-var setup = require('./lib/setup')
 var account = require('./lib/account')
 
 var addSession = require('./lib/sessions/add')
@@ -16,7 +15,6 @@ var updateAccount = require('./lib/accounts/update')
 var removeAccount = require('./lib/accounts/remove')
 var accountsOn = require('./lib/accounts/on')
 
-var promiseThen = require('./lib/utils/promise-then')
 var cache = require('./lib/utils/cache')
 
 var startListeningToAccountChanges = require('./lib/utils/start-listening-to-account-changes')
@@ -32,25 +30,22 @@ function accountApi (options) {
     cache: cache(db)
   }
 
-  // returns promise
-  var setupPromise = setup(state)
-
   accountsEmitter.once('newListener', startListeningToAccountChanges.bind(null, state))
 
   return {
     sessions: {
-      add: promiseThen.bind(null, setupPromise, addSession.bind(null, state)),
-      find: promiseThen.bind(null, setupPromise, findSession.bind(null, state)),
-      remove: promiseThen.bind(null, setupPromise, removeSession.bind(null, state))
+      add: addSession.bind(null, state),
+      find: findSession.bind(null, state),
+      remove: removeSession.bind(null, state)
     },
     accounts: {
-      add: promiseThen.bind(null, setupPromise, addAccount.bind(null, state)),
-      find: promiseThen.bind(null, setupPromise, findAccount.bind(null, state)),
-      findAll: promiseThen.bind(null, setupPromise, findAllAccounts.bind(null, state)),
-      remove: promiseThen.bind(null, setupPromise, removeAccount.bind(null, state)),
-      update: promiseThen.bind(null, setupPromise, updateAccount.bind(null, state)),
+      add: addAccount.bind(null, state),
+      find: findAccount.bind(null, state),
+      findAll: findAllAccounts.bind(null, state),
+      remove: removeAccount.bind(null, state),
+      update: updateAccount.bind(null, state),
       on: accountsOn.bind(null, state)
     },
-    account: account.bind(null, setupPromise, state)
+    account: account.bind(null, state)
   }
 }
