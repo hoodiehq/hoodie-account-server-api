@@ -5,11 +5,16 @@ var removeSession = require('../../../lib/sessions/remove')
 var internals = removeSession.internals
 
 test('removeSession', function (group) {
+  group.afterEach(function (done) {
+    simple.restore()
+    done()
+  })
+
   group.test('session not found', function (t) {
     t.plan(1)
 
     simple.mock(internals, 'findSession').rejectWith(new Error('Opps'))
-    removeSession({}, 'sessionid')
+    removeSession({setupPromise: Promise.resolve()}, 'sessionid')
 
     .then(function () {
       t.fail('removeSession should reject')
@@ -18,12 +23,9 @@ test('removeSession', function (group) {
     .catch(function (error) {
       t.is(error.message, 'Opps')
     })
-
-    simple.restore()
   })
 
-  // prepared for https://github.com/hoodiehq/camp/issues/58
-  group.test('session found', {skip: false}, function (t) {
+  group.test('session found', function (t) {
     t.plan(2)
 
     simple.mock(internals, 'findSession').resolveWith({
@@ -32,7 +34,8 @@ test('removeSession', function (group) {
         username: 'foo'
       }
     })
-    removeSession({}, 'sessionid')
+
+    removeSession({setupPromise: Promise.resolve()}, 'sessionid')
 
     .then(function (session) {
       t.is(session.id, 'sessionid')
@@ -40,8 +43,6 @@ test('removeSession', function (group) {
     })
 
     .catch(t.error)
-
-    simple.restore()
   })
 
   group.test('session found', function (t) {
@@ -56,7 +57,8 @@ test('removeSession', function (group) {
         }
       }
     })
-    removeSession({}, 'sessionid', {include: 'account.profile'})
+
+    removeSession({setupPromise: Promise.resolve()}, 'sessionid', {include: 'account.profile'})
 
     .then(function (session) {
       t.is(session.id, 'sessionid')
@@ -65,8 +67,6 @@ test('removeSession', function (group) {
     })
 
     .catch(t.error)
-
-    simple.restore()
   })
 
   group.end()

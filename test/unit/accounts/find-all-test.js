@@ -8,6 +8,7 @@ test('findAllAccount', function (group) {
     t.plan(1)
 
     var state = {
+      setupPromise: Promise.resolve(),
       db: {
         allDocs: simple.stub().resolveWith({
           rows: [
@@ -46,6 +47,7 @@ test('findAllAccount', function (group) {
     t.plan(1)
 
     var state = {
+      setupPromise: Promise.resolve(),
       db: {
         allDocs: simple.stub().resolveWith({
           rows: [
@@ -81,6 +83,7 @@ test('findAllAccount', function (group) {
     t.plan(1)
 
     var state = {
+      setupPromise: Promise.resolve(),
       db: {
         allDocs: simple.stub().resolveWith({
           rows: [
