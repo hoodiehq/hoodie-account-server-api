@@ -37,6 +37,40 @@ test('updateAccount', function (group) {
     .catch(t.error)
   })
 
+  group.test('update function with options', function (t) {
+    t.plan(1)
+
+    var state = {
+      setupPromise: Promise.resolve(),
+      cache: {
+        get: simple.stub().resolveWith({
+          _id: 'org.couchdb.user:foo',
+          _rev: '1-234',
+          name: 'foo',
+          roles: ['id:user123'],
+          profile: {
+            name: 'bar'
+          }
+        }),
+        set: simple.stub().resolveWith({})
+      }
+    }
+    var options = { include: 'profile' }
+
+    updateAccount(state, {
+      username: 'foo'
+    }, function (account) {
+      account.profile.name = 'baz'
+      return account
+    }, options)
+
+    .then(function (doc) {
+      t.deepEqual(doc.profile, { name: 'baz' })
+    })
+
+    .catch(t.catch)
+  })
+
   group.test('with username change via update function', function (t) {
     t.plan(4)
 
