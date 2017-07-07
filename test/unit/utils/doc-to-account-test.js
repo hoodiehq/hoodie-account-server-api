@@ -1,3 +1,4 @@
+var simple = require('simple-mock')
 var test = require('tap').test
 
 var docToAccount = require('../../../lib/utils/doc-to-account')
@@ -26,23 +27,42 @@ var doc = {
   }
 }
 
-test('docToAccount', function (t) {
-  t.deepEqual(docToAccount(doc), {
-    id: 'ekmn30j',
-    username: 'test',
-    roles: ['myrole'],
-    foo: 'bar'
-  }, 'returns custom property on account')
+test('docToAccount', function (group) {
+  group.test('test custom property', function (t) {
+    t.plan(1)
 
-  t.deepEqual(docToAccount(doc, {includeProfile: true}), {
-    id: 'ekmn30j',
-    username: 'test',
-    roles: ['myrole'],
-    foo: 'bar',
-    profile: {
-      profileFoo: 'bar'
-    }
-  }, 'returns profile if options.includeProfile passed')
+    t.deepEqual(docToAccount(doc), {
+      id: 'ekmn30j',
+      username: 'test',
+      roles: ['myrole'],
+      foo: 'bar'
+    }, 'returns custom property on account')
+  })
 
-  t.end()
+  group.test('include profile', function (t) {
+    t.plan(1)
+
+    t.deepEqual(docToAccount(doc, {includeProfile: true}), {
+      id: 'ekmn30j',
+      username: 'test',
+      roles: ['myrole'],
+      foo: 'bar',
+      profile: {
+        profileFoo: 'bar'
+      }
+    }, 'returns profile if options.includeProfile passed')
+  })
+
+  group.test('no account ID', function (t) {
+    t.plan(1)
+
+    simple.mock(docToAccount.internals, 'findIdInRoles').returnWith(undefined)
+
+    t.throws(
+      function () { docToAccount(doc) },
+      docToAccount.internals.errors.FORBIDDEN_ID_ROLE_MISSING
+    )
+  })
+
+  group.end()
 })
