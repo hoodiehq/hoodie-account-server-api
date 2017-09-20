@@ -109,6 +109,28 @@ test('addAccount', function (group) {
     })
   })
 
+  group.test('with username containing uppercase letters', function (t) {
+    t.plan(1)
+
+    var state = {
+      cache: {
+        set: simple.stub().resolveWith({})
+      },
+      setupPromise: Promise.resolve()
+    }
+
+    addAccount(state, {
+      username: 'userWithCAPS'
+    })
+
+    .then(function () {
+      var doc = state.cache.set.lastCall.arg
+      t.deepEqual(doc.name, 'userwithcaps')
+    })
+
+    .catch(t.catch)
+  })
+
   group.test('with other error', function (t) {
     t.plan(3)
 
