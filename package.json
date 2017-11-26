@@ -39,7 +39,7 @@
     "semantic-release": "^8.0.0",
     "simple-mock": "^0.8.0",
     "standard": "^10.0.0",
-    "tap": "^10.0.1"
+    "tap": "^11.0.0"
   },
   "publishConfig": {
     "access": "public"
