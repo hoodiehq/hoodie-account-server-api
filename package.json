@@ -36,7 +36,7 @@
     "base64url": "^2.0.0",
     "coveralls": "^3.0.0",
     "nyc": "^11.0.0",
-    "semantic-release": "^8.0.0",
+    "semantic-release": "^11.0.2",
     "simple-mock": "^0.8.0",
     "standard": "^10.0.0",
     "tap": "^11.0.0"
