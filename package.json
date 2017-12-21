@@ -6,7 +6,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "pretest": "standard",
     "test": "nyc tap 'test/{unit,integration}/**/*-test.js'",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release"
   },
   "nyc": {
     "//": "since we override the default excludes, we have to also (re)exclude the test directory and node_modules",
