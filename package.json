@@ -1,5 +1,6 @@
 {
   "name": "@hoodie/account-server-api",
+  "version": "0.0.0-development",
   "description": "Account JavaScript API backed by PouchDB",
   "main": "index.js",
   "scripts": {
