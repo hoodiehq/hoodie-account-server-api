@@ -51,7 +51,7 @@
     "pouchdb-adapter-memory": "^6.0.7",
     "pouchdb-core": "^6.0.7",
     "pouchdb-errors": "6.4.0",
-    "pouchdb-mapreduce": "^6.0.7",
+    "pouchdb-mapreduce": "^6.4.2",
     "pouchdb-users": "^1.0.3",
     "uuid": "^3.0.0"
   }
