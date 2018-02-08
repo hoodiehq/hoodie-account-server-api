@@ -81,6 +81,28 @@ test('addAccount', function (group) {
     .catch(t.catch)
   })
 
+  group.test('sets default createdAt', function (t) {
+    t.plan(1)
+
+    var state = {
+      cache: {
+        set: simple.stub().resolveWith({})
+      },
+      setupPromise: Promise.resolve()
+    }
+
+    addAccount(state, {
+      username: 'foo'
+    })
+
+    .then(function () {
+      var doc = state.cache.set.lastCall.arg
+      t.notEqual(doc.createdAt, undefined)
+    })
+
+    .catch(t.catch)
+  })
+
   group.test('with existing username', function (t) {
     t.plan(3)
 
