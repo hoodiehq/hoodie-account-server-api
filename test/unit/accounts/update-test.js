@@ -29,12 +29,12 @@ test('updateAccount', function (group) {
       return account
     })
 
-    .then(function () {
-      var doc = state.cache.set.lastCall.arg
-      t.deepEqual(doc.profile, {})
-    })
+      .then(function () {
+        var doc = state.cache.set.lastCall.arg
+        t.deepEqual(doc.profile, {})
+      })
 
-    .catch(t.error)
+      .catch(t.error)
   })
 
   group.test('update function with options', function (t) {
@@ -64,11 +64,11 @@ test('updateAccount', function (group) {
       return account
     }, options)
 
-    .then(function (doc) {
-      t.deepEqual(doc.profile, { name: 'baz' })
-    })
+      .then(function (doc) {
+        t.deepEqual(doc.profile, { name: 'baz' })
+      })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.test('with username change via update function', function (t) {
@@ -98,16 +98,16 @@ test('updateAccount', function (group) {
       return account
     })
 
-    .then(function () {
-      t.is(state.cache.set.callCount, 2)
-      var newDoc = state.cache.set.calls[0].arg
-      var removedDoc = state.cache.set.calls[1].arg
-      t.deepEqual(newDoc.profile, {})
-      t.is(newDoc.name, 'newfoo')
-      t.is(removedDoc._deleted, true)
-    })
+      .then(function () {
+        t.is(state.cache.set.callCount, 2)
+        var newDoc = state.cache.set.calls[0].arg
+        var removedDoc = state.cache.set.calls[1].arg
+        t.deepEqual(newDoc.profile, {})
+        t.is(newDoc.name, 'newfoo')
+        t.is(removedDoc._deleted, true)
+      })
 
-    .catch(t.error)
+      .catch(t.error)
   })
 
   group.end()

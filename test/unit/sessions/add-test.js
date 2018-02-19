@@ -55,13 +55,13 @@ t('addSession', function (group) {
 
     addSession(state, options)
 
-    .then(function () {
-      t.fail('password validation should reject')
-    })
+      .then(function () {
+        t.fail('password validation should reject')
+      })
 
-    .catch(function (error) {
-      t.is(error, validateError)
-    })
+      .catch(function (error) {
+        t.is(error, validateError)
+      })
   })
 
   group.test('validatePassword unauthorized password', function (t) {
@@ -75,13 +75,13 @@ t('addSession', function (group) {
 
     addSession(state, options)
 
-    .then(function () {
-      t.fail('password validation should reject')
-    })
+      .then(function () {
+        t.fail('password validation should reject')
+      })
 
-    .catch(function (error) {
-      t.is(error, addSession.internals.errors.UNAUTHORIZED_PASSWORD)
-    })
+      .catch(function (error) {
+        t.is(error, addSession.internals.errors.UNAUTHORIZED_PASSWORD)
+      })
   })
 
   group.test('username with auth', function (t) {
@@ -99,15 +99,15 @@ t('addSession', function (group) {
     simple.mock(addSession.internals, 'calculateSessionId').returnWith('session1234')
     addSession(state, options)
 
-    .then(function (session) {
-      t.is(state.cache.get.lastCall.arg, 'org.couchdb.user:foo')
-      t.deepEqual(session, {
-        id: 'session1234',
-        account: account
+      .then(function (session) {
+        t.is(state.cache.get.lastCall.arg, 'org.couchdb.user:foo')
+        t.deepEqual(session, {
+          id: 'session1234',
+          account: account
+        })
       })
-    })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.test('with session timeout', function (t) {
@@ -120,11 +120,11 @@ t('addSession', function (group) {
 
     addSession(state, options)
 
-    .then(function (session) {
-      t.is(addSession.internals.calculateSessionId.lastCall.args[3], expectedTimeout)
-    })
+      .then(function (session) {
+        t.is(addSession.internals.calculateSessionId.lastCall.args[3], expectedTimeout)
+      })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.test('with account token', function (t) {
@@ -136,12 +136,12 @@ t('addSession', function (group) {
 
     addSession(state, options)
 
-    .then(function (session) {
-      t.deepEqual(doc.tokens, {efgh5678: {}}, 'token abcd1234 should be deleted')
-      t.is(state.cache.set.lastCall.arg, doc, 'cache set is called with doc')
-    })
+      .then(function (session) {
+        t.deepEqual(doc.tokens, {efgh5678: {}}, 'token abcd1234 should be deleted')
+        t.is(state.cache.set.lastCall.arg, doc, 'cache set is called with doc')
+      })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.end()

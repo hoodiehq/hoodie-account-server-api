@@ -18,15 +18,15 @@ test('addAccount', function (group) {
       username: ''
     })
 
-    .then(function () {
-      t.fail('addAccount should reject')
-    })
+      .then(function () {
+        t.fail('addAccount should reject')
+      })
 
-    .catch(function (error) {
-      t.is(error.name, 'Bad Request')
-      t.is(error.status, 400)
-      t.is(error.message, 'username must be set')
-    })
+      .catch(function (error) {
+        t.is(error.name, 'Bad Request')
+        t.is(error.status, 400)
+        t.is(error.message, 'username must be set')
+      })
   })
 
   group.test('with profile', function (t) {
@@ -46,12 +46,12 @@ test('addAccount', function (group) {
       }
     })
 
-    .then(function () {
-      var doc = state.cache.set.lastCall.arg
-      t.deepEqual(doc.profile, {name: 'bar'})
-    })
+      .then(function () {
+        var doc = state.cache.set.lastCall.arg
+        t.deepEqual(doc.profile, {name: 'bar'})
+      })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.test('with profile and options', function (t) {
@@ -73,12 +73,12 @@ test('addAccount', function (group) {
       }
     }, options)
 
-    .then(function () {
-      var doc = state.cache.set.lastCall.arg
-      t.deepEqual(doc.profile, {name: 'bar'})
-    })
+      .then(function () {
+        var doc = state.cache.set.lastCall.arg
+        t.deepEqual(doc.profile, {name: 'bar'})
+      })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.test('sets default createdAt', function (t) {
@@ -95,12 +95,12 @@ test('addAccount', function (group) {
       username: 'foo'
     })
 
-    .then(function () {
-      var doc = state.cache.set.lastCall.arg
-      t.notEqual(doc.createdAt, undefined)
-    })
+      .then(function () {
+        var doc = state.cache.set.lastCall.arg
+        t.notEqual(doc.createdAt, undefined)
+      })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.test('with existing username', function (t) {
@@ -120,15 +120,15 @@ test('addAccount', function (group) {
       }
     })
 
-    .then(function () {
-      t.fail('addAccount should reject')
-    })
+      .then(function () {
+        t.fail('addAccount should reject')
+      })
 
-    .catch(function (error) {
-      t.is(error.name, 'Conflict')
-      t.is(error.status, 409)
-      t.is(error.message, 'An account with that username already exists')
-    })
+      .catch(function (error) {
+        t.is(error.name, 'Conflict')
+        t.is(error.status, 409)
+        t.is(error.message, 'An account with that username already exists')
+      })
   })
 
   group.test('with username containing uppercase letters', function (t) {
@@ -145,12 +145,12 @@ test('addAccount', function (group) {
       username: 'userWithCAPS'
     })
 
-    .then(function () {
-      var doc = state.cache.set.lastCall.arg
-      t.deepEqual(doc.name, 'userwithcaps')
-    })
+      .then(function () {
+        var doc = state.cache.set.lastCall.arg
+        t.deepEqual(doc.name, 'userwithcaps')
+      })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.test('with other error', function (t) {
@@ -175,15 +175,15 @@ test('addAccount', function (group) {
       }
     })
 
-    .then(function () {
-      t.fail('addAccount should reject')
-    })
+      .then(function () {
+        t.fail('addAccount should reject')
+      })
 
-    .catch(function (error) {
-      t.is(error.name, 'Custom error')
-      t.is(error.status, 999)
-      t.is(error.message, 'Testing a non-409 error is re-thrown')
-    })
+      .catch(function (error) {
+        t.is(error.name, 'Custom error')
+        t.is(error.status, 999)
+        t.is(error.message, 'Testing a non-409 error is re-thrown')
+      })
   })
 
   group.end()

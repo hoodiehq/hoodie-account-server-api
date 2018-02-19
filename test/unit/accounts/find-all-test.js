@@ -29,18 +29,18 @@ test('findAllAccount', function (group) {
     }
     findAllAccount(state, {include: 'profile'})
 
-    .then(function (accounts) {
-      t.deepEqual(accounts[0], {
-        id: 'user123',
-        username: 'foo',
-        roles: [],
-        profile: {
-          name: 'bar'
-        }
+      .then(function (accounts) {
+        t.deepEqual(accounts[0], {
+          id: 'user123',
+          username: 'foo',
+          roles: [],
+          profile: {
+            name: 'bar'
+          }
+        })
       })
-    })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.test('without `options` in arguments', function (t) {
@@ -68,15 +68,15 @@ test('findAllAccount', function (group) {
     }
     findAllAccount(state)
 
-    .then(function (accounts) {
-      t.deepEqual(accounts[0], {
-        id: 'user123',
-        username: 'foo',
-        roles: []
+      .then(function (accounts) {
+        t.deepEqual(accounts[0], {
+          id: 'user123',
+          username: 'foo',
+          roles: []
+        })
       })
-    })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.test('accountiwthout id role (hoodiehq/hoodie#704)', function (t) {
@@ -101,11 +101,11 @@ test('findAllAccount', function (group) {
     }
     findAllAccount(state)
 
-    .then(function (accounts) {
-      t.is(accounts.length, 0)
-    })
+      .then(function (accounts) {
+        t.is(accounts.length, 0)
+      })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.end()

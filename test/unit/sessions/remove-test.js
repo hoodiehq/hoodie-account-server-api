@@ -16,13 +16,13 @@ test('removeSession', function (group) {
     simple.mock(internals, 'findSession').rejectWith(new Error('Opps'))
     removeSession({setupPromise: Promise.resolve()}, 'sessionid')
 
-    .then(function () {
-      t.fail('removeSession should reject')
-    })
+      .then(function () {
+        t.fail('removeSession should reject')
+      })
 
-    .catch(function (error) {
-      t.is(error.message, 'Opps')
-    })
+      .catch(function (error) {
+        t.is(error.message, 'Opps')
+      })
   })
 
   group.test('session found', function (t) {
@@ -37,12 +37,12 @@ test('removeSession', function (group) {
 
     removeSession({setupPromise: Promise.resolve()}, 'sessionid')
 
-    .then(function (session) {
-      t.is(session.id, 'sessionid')
-      t.is(session.account.username, 'foo')
-    })
+      .then(function (session) {
+        t.is(session.id, 'sessionid')
+        t.is(session.account.username, 'foo')
+      })
 
-    .catch(t.error)
+      .catch(t.error)
   })
 
   group.test('session found', function (t) {
@@ -60,13 +60,13 @@ test('removeSession', function (group) {
 
     removeSession({setupPromise: Promise.resolve()}, 'sessionid', {include: 'account.profile'})
 
-    .then(function (session) {
-      t.is(session.id, 'sessionid')
-      t.is(session.account.username, 'foo')
-      t.is(session.account.profile.name, 'Foo Bar')
-    })
+      .then(function (session) {
+        t.is(session.id, 'sessionid')
+        t.is(session.account.username, 'foo')
+        t.is(session.account.profile.name, 'Foo Bar')
+      })
 
-    .catch(t.error)
+      .catch(t.error)
   })
 
   group.end()

@@ -20,13 +20,13 @@ test('findUserDocByUsernameOrIdOrToken', function (group) {
 
     findUserDocByUsernameOrIdOrToken(db, cache, 'id1234')
 
-    .then(function () {
-      t.fail('should reject with pounch DB MISSING_DOC error')
-    })
+      .then(function () {
+        t.fail('should reject with pounch DB MISSING_DOC error')
+      })
 
-    .catch(function (error) {
-      t.is(error, PouchDBErrors.MISSING_DOC)
-    })
+      .catch(function (error) {
+        t.is(error, PouchDBErrors.MISSING_DOC)
+      })
   })
 
   group.end()

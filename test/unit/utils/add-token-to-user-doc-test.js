@@ -31,17 +31,17 @@ test('addTokenToUserDoc', function (group) {
 
     addTokenToUserDoc(db, cache, account, newToken)
 
-    .then(function () {
-      var modifiedUserDoc = cache.set.lastCall.arg
+      .then(function () {
+        var modifiedUserDoc = cache.set.lastCall.arg
 
-      t.is(
-        modifiedUserDoc.tokens['secrettoken'].type,
-        'new passwordreset',
-        'new passwordreset token has replaced old'
-      )
-    })
+        t.is(
+          modifiedUserDoc.tokens['secrettoken'].type,
+          'new passwordreset',
+          'new passwordreset token has replaced old'
+        )
+      })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.end()

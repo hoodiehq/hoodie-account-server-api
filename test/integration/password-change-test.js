@@ -19,28 +19,28 @@ test('walkthrough', function (t) {
     password: 'secret'
   })
 
-  .then(function (account) {
-    t.is(account.username, 'foo', 'creates account')
+    .then(function (account) {
+      t.is(account.username, 'foo', 'creates account')
 
-    return api.accounts.update('user123', {
-      password: 'newsecret'
-    })
-  })
-
-  .then(function (account) {
-    t.pass('changes password')
-
-    return api.sessions.add({
-      account: {
-        username: 'foo',
+      return api.accounts.update('user123', {
         password: 'newsecret'
-      }
+      })
     })
-  })
 
-  .then(function () {
-    t.pass('new password works for authentication')
-  })
+    .then(function (account) {
+      t.pass('changes password')
 
-  .catch(t.error)
+      return api.sessions.add({
+        account: {
+          username: 'foo',
+          password: 'newsecret'
+        }
+      })
+    })
+
+    .then(function () {
+      t.pass('new password works for authentication')
+    })
+
+    .catch(t.error)
 })

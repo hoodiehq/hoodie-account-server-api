@@ -39,31 +39,31 @@ test('walkthrough', function (t) {
     signedUpAt: '1970-01-01T11:11:11.111Z'
   })
 
-  .then(function (account) {
-    t.is(account.username, 'foo', 'creates account')
+    .then(function (account) {
+      t.is(account.username, 'foo', 'creates account')
 
-    return api.sessions.add({
-      account: {
-        username: account.username
-      }
+      return api.sessions.add({
+        account: {
+          username: account.username
+        }
+      })
     })
-  })
 
-  .then(function (session) {
-    t.ok(session.id, 'creates session')
+    .then(function (session) {
+      t.ok(session.id, 'creates session')
 
-    return api.sessions.remove(session.id, {include: 'account.profile'})
-  })
+      return api.sessions.remove(session.id, {include: 'account.profile'})
+    })
 
-  .then(function (session) {
-    t.ok(session.account.id, 'removes session')
+    .then(function (session) {
+      t.ok(session.account.id, 'removes session')
 
-    return api.accounts.remove(session.account.id)
-  })
+      return api.accounts.remove(session.account.id)
+    })
 
-  .then(function (account) {
-    t.pass('deletes account')
-  })
+    .then(function (account) {
+      t.pass('deletes account')
+    })
 
-  .catch(t.error)
+    .catch(t.error)
 })

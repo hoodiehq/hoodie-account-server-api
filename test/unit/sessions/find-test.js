@@ -12,14 +12,14 @@ test('findSession', function (group) {
       }
     }, 'sessionid')
 
-    .then(function () {
-      t.fail('should not resolve')
-    })
+      .then(function () {
+        t.fail('should not resolve')
+      })
 
-    .catch(function (error) {
-      t.is(error.message, 'oops')
-      t.end()
-    })
+      .catch(function (error) {
+        t.is(error.message, 'oops')
+        t.end()
+      })
   })
 
   group.test('user found but session invalid', function (t) {
@@ -33,14 +33,14 @@ test('findSession', function (group) {
       }
     }, 'sessionid')
 
-    .then(function () {
-      t.fail('should not resolve')
-    })
+      .then(function () {
+        t.fail('should not resolve')
+      })
 
-    .catch(function (error) {
-      t.is(error.message, 'Session invalid')
-      t.end()
-    })
+      .catch(function (error) {
+        t.is(error.message, 'Session invalid')
+        t.end()
+      })
   })
 
   group.test('user found and session valid', function (t) {
@@ -56,12 +56,12 @@ test('findSession', function (group) {
       }
     }, 'sessionid')
 
-    .then(function (session) {
-      t.is(session.id, 'sessionid')
-      t.end()
-    })
+      .then(function (session) {
+        t.is(session.id, 'sessionid')
+        t.end()
+      })
 
-    .catch(t.error)
+      .catch(t.error)
   })
 
   group.end()

@@ -29,18 +29,18 @@ test('findAccount', function (group) {
     }
     findAccount(state, 'user123', {include: 'profile'})
 
-    .then(function (accounts) {
-      t.deepEqual(accounts, {
-        id: 'user123',
-        username: 'foo',
-        roles: [],
-        profile: {
-          name: 'bar'
-        }
+      .then(function (accounts) {
+        t.deepEqual(accounts, {
+          id: 'user123',
+          username: 'foo',
+          roles: [],
+          profile: {
+            name: 'bar'
+          }
+        })
       })
-    })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.test('without `options` in arguments', function (t) {
@@ -68,15 +68,15 @@ test('findAccount', function (group) {
     }
     findAccount(state, 'user123')
 
-    .then(function (accounts) {
-      t.deepEqual(accounts, {
-        id: 'user123',
-        username: 'foo',
-        roles: []
+      .then(function (accounts) {
+        t.deepEqual(accounts, {
+          id: 'user123',
+          username: 'foo',
+          roles: []
+        })
       })
-    })
 
-    .catch(t.catch)
+      .catch(t.catch)
   })
 
   group.end()

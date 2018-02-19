@@ -22,26 +22,26 @@ test('cache', function (t) {
     signedUpAt: '1970-01-01T11:11:11.111Z'
   })
 
-  .then(function (account) {
-    t.is(account.username, 'foo', 'creates account')
+    .then(function (account) {
+      t.is(account.username, 'foo', 'creates account')
 
-    return api.sessions.add({
-      account: {
-        username: account.username
-      }
+      return api.sessions.add({
+        account: {
+          username: account.username
+        }
+      })
     })
-  })
 
-  .then(function (session) {
-    return api.sessions.find(session.id)
-  })
+    .then(function (session) {
+      return api.sessions.find(session.id)
+    })
 
-  .then(function (session) {
-    t.is(PouchDB.prototype.get.callCount, 0, 'caches account after put')
-    t.ok(session.id, 'creates session')
-    simple.restore()
-    t.end()
-  })
+    .then(function (session) {
+      t.is(PouchDB.prototype.get.callCount, 0, 'caches account after put')
+      t.ok(session.id, 'creates session')
+      simple.restore()
+      t.end()
+    })
 
-  .catch(t.error)
+    .catch(t.error)
 })
